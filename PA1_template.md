@@ -1,9 +1,8 @@
 ---
 title: "**Assignment: *Quantified Self* Analysis**"
 subtitle: "Reproducible Research Course"
-
 author: "Tamanaco Francisquez"
-date: "October 17, 2015"
+date: "January 20, 2016"
 output: html_document
 ---
   
@@ -59,17 +58,18 @@ dataset.
 
 ### Requirements
 
-* ggplot2, dplyr,and lubridate packages
+* ggplot2, dplyr and lubridate packages.
 
 ### Output
 
-This HTML Document
---------------------------------------------------------------------------------
+* HTML document, and associated figures.
+
+
 --------------------------------------------------------------------------------
 
 ## Analysis
 
-### 0. Load needed packages
+### 0. Load Needed Packages
 
 
 ```r
@@ -80,7 +80,7 @@ library(lubridate)
 
 --------------------------------------------------------------------------------
 
-### 1. Loading and Preprocessing the data
+### 1. Loading and Preprocessing the Data
 
 Check the current directory to check whether the "repdata_data_activity.zip" file has been downloaded
 
@@ -106,10 +106,11 @@ if(!file.exists("activity.csv")){
 ```
 
 Now the the data is easily accesible, we will:
-      1. Load it onto R
-      2. Convert its date column to R-friendly dates
-      3. Convert its interval column to HH:MM time format
-      4. Converting it to a TBL for easier manipulation by dplyr
+
+      1. Load the dataSet onto R
+      2. Convert the date column to R-friendly dates
+      3. Convert the interval column to HH:MM time format
+      4. Convert the dataSet to a TBL for easier manipulation by dplyr
 
 
 ```r
@@ -150,9 +151,9 @@ head(activityTBL)
 
 --------------------------------------------------------------------------------
 
-### 2. What is mean total number of steps taken per day?
+### 2. What is Mean Total Number of Steps Taken Per Day?
 
-In order to get to total number of steps per day, the activity table is grouped by date, and then summarised with the extra column totaling the total number of steps per day.
+In order to get the total number of steps per day, the activity table is grouped by date, and then summarised with the extra column totaling the total number of steps per day (dplyr).
 
 
 ```r
@@ -192,7 +193,9 @@ and the median is **10395** steps.
 
 --------------------------------------------------------------------------------
 
-### 3. What is the average daily activity pattern?
+### 3. What is the Average Daily Activity Pattern?
+
+A line plot of what the average day looks like will be represented. In order to do so, the steps for each interval will be averaged across all available days, and the interval will be represented by their time signature instead of their indices.
 
 
 ```r
@@ -212,7 +215,7 @@ The interval with the maximum average number of steps is the one occuring at
 
 --------------------------------------------------------------------------------
 
-### 4. Imputing missing values
+### 4. Imputing Missing Values
 
 The total number of missing cases is **2304**
 
@@ -349,7 +352,7 @@ From the plot the following conclusions can be drawn:
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
 
-Copyright (C) 2015 Tamanaco Francisquez
+Copyright (C) 2016 Tamanaco Francisquez
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
