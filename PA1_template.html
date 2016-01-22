@@ -10,7 +10,7 @@
 
 <meta name="author" content="Tamanaco Francisquez" />
 
-<meta name="date" content="2015-10-17" />
+<meta name="date" content="2016-01-20" />
 
 <title>Assignment: Quantified Self Analysis</title>
 
@@ -65,7 +65,7 @@ img {
 <h1 class="title"><strong>Assignment: <em>Quantified Self</em> Analysis</strong></h1>
 <h3 class="subtitle"><em>Reproducible Research Course</em></h3>
 <h4 class="author"><em>Tamanaco Francisquez</em></h4>
-<h4 class="date"><em>October 17, 2015</em></h4>
+<h4 class="date"><em>January 20, 2016</em></h4>
 </div>
 
 
@@ -128,7 +128,7 @@ library(dplyr)</code></pre>
 </div>
 <div id="loading-and-preprocessing-the-data" class="section level3">
 <h3>1. Loading and Preprocessing the data</h3>
-<p>Check the current directory to see wether the “repdata_data_activity.zip” file has been downloaded</p>
+<p>Check the current directory to check whether the “repdata_data_activity.zip” file has been downloaded</p>
 <pre class="r"><code>if(!file.exists(&quot;repdata_data_activity.zip&quot;)){
       
       file_url &lt;- &quot;https://d396qusza40orc.cloudfront.net/repdata%2Fdata%2Factivity.zip&quot;
@@ -141,7 +141,11 @@ library(dplyr)</code></pre>
 <pre class="r"><code>if(!file.exists(&quot;activity.csv&quot;)){
       unzip(&quot;repdata_data_activity.zip&quot;)      
 }</code></pre>
-<p>Now the the data is easily accesible, we will: 1. Load it onto R 2. Convert its date column to R-friendly dates 3. Convert its interval column to HH:MM time format 4. Converting it to a TBL for easier manipulation by dplyr</p>
+<p>Now the the data is easily accesible, we will:</p>
+<pre><code>  1. Load the dataSet onto R
+  2. Convert the date column to R-friendly dates
+  3. Convert the interval column to HH:MM time format
+  4. Convert the dataSet to a TBL for easier manipulation by dplyr</code></pre>
 <pre class="r"><code>activityData &lt;- read.csv(&quot;activity.csv&quot;)
 activityData$date &lt;- as.Date(activityData$date , &quot;%Y-%m-%d&quot;)
 
@@ -170,7 +174,7 @@ str(activityTBL)</code></pre>
 </div>
 <div id="what-is-mean-total-number-of-steps-taken-per-day" class="section level3">
 <h3>2. What is mean total number of steps taken per day?</h3>
-<p>In order to get to total number of steps per day, the activity table is grouped by date, and then summarised with the extra column totaling the total number of steps per day.</p>
+<p>In order to get the total number of steps per day, the activity table is grouped by date, and then summarised with the extra column totaling the total number of steps per day (dplyr).</p>
 <pre class="r"><code>activityTBL.byDate   &lt;- group_by(activityTBL, date)
 activityTBL.sumSteps &lt;- summarise(activityTBL.byDate,totalSteps = sum(steps, na.rm = TRUE))
 
@@ -198,6 +202,7 @@ head(activityTBL.sumSteps)</code></pre>
 </div>
 <div id="what-is-the-average-daily-activity-pattern" class="section level3">
 <h3>3. What is the average daily activity pattern?</h3>
+<p>A line plot of what the average day looks like will be represented. In order to do so, the steps for each interval will be averaged across all available days, and the interval will be represented by their time signature instead of their indices.</p>
 <pre class="r"><code>activityTBL.byInterval &lt;- group_by(activityTBL, interval)
 activityTBL.avgSteps &lt;- summarise(activityTBL.byInterval,avgSteps = mean(steps, na.rm = TRUE))
 
@@ -298,7 +303,7 @@ ggplot(activityTBL.avgSteps, aes(interval, avgSteps, group=1) ) +
 </div>
 <div id="section" class="section level2">
 <h2>——————————————————————————–</h2>
-<p>Copyright (C) 2015 Tamanaco Francisquez</p>
+<p>Copyright (C) 2016 Tamanaco Francisquez</p>
 <p>This program is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.</p>
 <p>This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.</p>
 </div>
